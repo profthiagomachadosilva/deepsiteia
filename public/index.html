@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livraria Digital</title>
+    <meta name="description" content="Encontre seus livros favoritos em uma experiência visual e interativa.">
+    <link rel="icon" href="" type="image/png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="#home" class="logo">Livraria</a>
+            <ul>
+                <li><a href="#categories">Categorias</a></li>
+                <li><a href="#best">Melhores Vendas</a></li>
+                <li><a href="#offers">Oferta</a></li>
+                <li><a href="#contact">Contato</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section id="home">
+            <h1>Descubra o Livro que Você Ama</h1>
+            <p>Explore uma seleção de títulos, promoções exclusivas e mais.</p>
+            <a href="#best">Veja as Melhores</a>
+        </section>
+
+        <!-- CATEGORIES -->
+        <section id="categories">
+            <h2>Categorias</h2>
+            <div class="grid">
+                <div class="card"><img src="" alt="">
+                    <div>
+                        <h3>Romance</h3>
+                    </div>
+                </div>
+                <div class="card"><img src="" alt="">
+                    <div>
+                        <h3>Ficção</h3>
+                    </div>
+                </div>
+                <div class="card"><img src="" alt="">
+                    <div>
+                        <h3>Infantil</h3>
+                    </div>
+                </div>
+                <div class="card"><img src="" alt="">
+                    <div>
+                        <h3>Biografia</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BEST SELLERS -->
+        <section id="best">
+            <h2>Melhores Vendas</h2>
+            <div class="grid">
+                <div class="card book-card"><img src="" alt="">
+                    <div>
+                        <h3>O Grande Livro</h3>
+                        <p>Autor: Exemplo</p>
+                        <p><strong>R$ 42,00</strong></p>
+                    </div>
+                </div>
+                <div class="card book-card"><img src="" alt="">
+                    <div>
+                        <h3>História Fantástica</h3>
+                        <p>Autor: Exemplo</p>
+                        <p><strong>R$ 38,00</strong></p>
+                    </div>
+                </div>
+                <div class="card book-card"><img src="" alt="">
+                    <div>
+                        <h3>Aprenda em 30 Dias</h3>
+                        <p>Autor: Exemplo</p>
+                        <p><strong>R$ 29,00</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OFFERS -->
+        <section id="offers" style="text-align:center;">
+            <h2>Promoções Especiais</h2>
+            <p>Frete grátis, descontos exclusivos e muito mais.</p>
+            <a href="#best" class="btn">Aproveitar</a>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+            <h2>Fale Conosco</h2>
+            <form id="form-agendamento">
+                <input type="text" id="nome" placeholder="Nome" required>
+                <input type="email" id="email" placeholder="E-mail" required>
+                <textarea id="mensagem" placeholder="Mensagem" rows="4" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        © 2025 Livraria Digital – Todos os direitos reservados.
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>

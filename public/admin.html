@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel Administrativo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #F8F9FA;
+            color: #222827;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 14px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            text-align: left;
+            background: #1C2B4B;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: #6AB5D6;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Painel Administrativo</h1>
+    <p>Mensagens enviadas pelo formulário</p>
+</header>
+
+<div class="container">
+    <table id="tabela-mensagens">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Mensagem</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<script>
+async function carregarMensagens() {
+    try {
+        const resposta = await fetch("http://localhost:3000/agendamentos");
+        const dados = await resposta.json();
+
+        const tbody = document.querySelector("#tabela-mensagens tbody");
+        tbody.innerHTML = "";
+
+        dados.forEach(item => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${item.nome}</td>
+                <td>${item.email}</td>
+                <td>${item.mensagem}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    } catch (erro) {
+        console.error("Erro ao carregar mensagens:", erro);
+    }
+}
+
+carregarMensagens();
+</script>
+<script src="admin.js"></script>
+</body>
+</html>
