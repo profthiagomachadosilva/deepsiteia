@@ -83,7 +83,7 @@
 <script>
 async function carregarMensagens() {
     try {
-        const resposta = await fetch("http://localhost:3000/agendamentos");
+        const resposta = await fetch("https://deepsiteia.onrender.com/agendamentos");
         const dados = await resposta.json();
 
         const tbody = document.querySelector("#tabela-mensagens tbody");

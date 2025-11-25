@@ -17,7 +17,7 @@ form.addEventListener("submit", async function (event) {
     };
 
     try {
-        const resposta = await fetch("http://localhost:3000/agendamentos", {
+        const resposta = await fetch("https://deepsiteia.onrender.com/agendamentos", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
