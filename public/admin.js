@@ -1,5 +1,3 @@
-// admin.js
-
 async function carregarMensagens() {
     const tbody = document.querySelector("#tabela-mensagens tbody");
 
@@ -19,7 +17,7 @@ async function carregarMensagens() {
         if (dados.length === 0) {
             tbody.innerHTML = `
                 <tr>
-                    <td colspan="3" style="text-align:center; padding: 20px;">
+                    <td colspan="4" style="text-align:center; padding: 20px;">
                         Nenhuma mensagem encontrada.
                     </td>
                 </tr>
@@ -27,7 +25,7 @@ async function carregarMensagens() {
             return;
         }
 
-        // Monta a tabela
+        // Monta a tabela com botão de deletar
         dados.forEach(item => {
             const tr = document.createElement("tr");
 
@@ -35,6 +33,11 @@ async function carregarMensagens() {
                 <td>${item.nome}</td>
                 <td>${item.email}</td>
                 <td>${item.mensagem}</td>
+                <td>
+                    <button class="btn-deletar" onclick="deletarMensagem(${item.id})">
+                        Deletar
+                    </button>
+                </td>
             `;
 
             tbody.appendChild(tr);
@@ -45,7 +48,7 @@ async function carregarMensagens() {
 
         tbody.innerHTML = `
             <tr>
-                <td colspan="3" style="color:red; text-align:center; padding: 20px;">
+                <td colspan="4" style="color:red; text-align:center; padding: 20px;">
                     Erro ao carregar mensagens.
                 </td>
             </tr>
@@ -53,5 +56,32 @@ async function carregarMensagens() {
     }
 }
 
-// Carrega automaticamente ao abrir o admin.html
+// Função para deletar mensagem
+async function deletarMensagem(id) {
+    const confirmar = confirm("Tem certeza que deseja deletar esta mensagem?");
+
+    if (!confirmar) return;
+
+    try {
+        const resposta = await fetch(`http://localhost:3000/agendamentos/${id}`, {
+            method: "DELETE"
+        });
+
+        if (!resposta.ok) {
+            throw new Error("Erro ao deletar mensagem");
+        }
+
+        alert("Mensagem deletada com sucesso!");
+
+        // Recarrega a tabela
+        carregarMensagens();
+
+    } catch (erro) {
+        console.error("Erro ao deletar:", erro);
+        alert("Ocorreu um erro ao deletar a mensagem.");
+    }
+}
+
+// Carrega automaticamente
 carregarMensagens();
+

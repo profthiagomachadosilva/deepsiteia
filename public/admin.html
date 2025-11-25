@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,7 +18,7 @@
 
         header {
             background: #ffffff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             padding: 20px 0;
             text-align: center;
         }
@@ -33,7 +34,7 @@
             background: #ffffff;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         table {
@@ -41,7 +42,8 @@
             border-collapse: collapse;
         }
 
-        th, td {
+        th,
+        td {
             padding: 14px;
             border-bottom: 1px solid #ddd;
         }
@@ -59,52 +61,54 @@
         }
     </style>
 </head>
+
 <body>
 
-<header>
-    <h1>Painel Administrativo</h1>
-    <p>Mensagens enviadas pelo formulário</p>
-</header>
+    <header>
+        <h1>Painel Administrativo</h1>
+        <p>Mensagens enviadas pelo formulário</p>
+    </header>
 
-<div class="container">
-    <table id="tabela-mensagens">
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Mensagem</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-</div>
+    <div class="container">
+        <table id="tabela-mensagens">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Mensagem</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
 
-<script>
-async function carregarMensagens() {
-    try {
-        const resposta = await fetch("https://deepsiteia.onrender.com/agendamentos");
-        const dados = await resposta.json();
+    <script>
+        async function carregarMensagens() {
+            try {
+                const resposta = await fetch("https://deepsiteia.onrender.com/agendamentos");
+                const dados = await resposta.json();
 
-        const tbody = document.querySelector("#tabela-mensagens tbody");
-        tbody.innerHTML = "";
+                const tbody = document.querySelector("#tabela-mensagens tbody");
+                tbody.innerHTML = "";
 
-        dados.forEach(item => {
-            const tr = document.createElement("tr");
-            tr.innerHTML = `
+                dados.forEach(item => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
                 <td>${item.nome}</td>
                 <td>${item.email}</td>
                 <td>${item.mensagem}</td>
             `;
-            tbody.appendChild(tr);
-        });
-    } catch (erro) {
-        console.error("Erro ao carregar mensagens:", erro);
-    }
-}
+                    tbody.appendChild(tr);
+                });
+            } catch (erro) {
+                console.error("Erro ao carregar mensagens:", erro);
+            }
+        }
 
-carregarMensagens();
-</script>
-<script src="admin.js"></script>
+        carregarMensagens();
+    </script>
+    <script src="admin.js"></script>
 </body>
+
 </html>
