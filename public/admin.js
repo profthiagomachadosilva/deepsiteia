@@ -2,7 +2,7 @@ async function carregarMensagens() {
     const tbody = document.querySelector("#tabela-mensagens tbody");
 
     try {
-        const resposta = await fetch("http://localhost:3000/agendamentos");
+        const resposta = await fetch("https://deepsiteia.onrender.com/agendamentos");
 
         if (!resposta.ok) {
             throw new Error("Erro ao buscar dados");
@@ -10,10 +10,8 @@ async function carregarMensagens() {
 
         const dados = await resposta.json();
 
-        // Limpa a tabela
         tbody.innerHTML = "";
 
-        // Se não tiver nenhum agendamento
         if (dados.length === 0) {
             tbody.innerHTML = `
                 <tr>
@@ -25,7 +23,6 @@ async function carregarMensagens() {
             return;
         }
 
-        // Monta a tabela com botão de deletar
         dados.forEach(item => {
             const tr = document.createElement("tr");
 
@@ -34,7 +31,7 @@ async function carregarMensagens() {
                 <td>${item.email}</td>
                 <td>${item.mensagem}</td>
                 <td>
-                    <button class="btn-deletar" onclick="deletarMensagem(${item.id})">
+                    <button onclick="deletarMensagem(${item.id})" class="btn-delete">
                         Deletar
                     </button>
                 </td>
@@ -56,14 +53,11 @@ async function carregarMensagens() {
     }
 }
 
-// Função para deletar mensagem
 async function deletarMensagem(id) {
-    const confirmar = confirm("Tem certeza que deseja deletar esta mensagem?");
-
-    if (!confirmar) return;
+    if (!confirm("Tem certeza que deseja deletar esta mensagem?")) return;
 
     try {
-        const resposta = await fetch(`http://localhost:3000/agendamentos/${id}`, {
+        const resposta = await fetch(`https://deepsiteia.onrender.com/agendamentos/${id}`, {
             method: "DELETE"
         });
 
@@ -72,16 +66,12 @@ async function deletarMensagem(id) {
         }
 
         alert("Mensagem deletada com sucesso!");
-
-        // Recarrega a tabela
         carregarMensagens();
 
     } catch (erro) {
         console.error("Erro ao deletar:", erro);
-        alert("Ocorreu um erro ao deletar a mensagem.");
+        alert("Erro ao deletar a mensagem.");
     }
 }
 
-// Carrega automaticamente
 carregarMensagens();
-
